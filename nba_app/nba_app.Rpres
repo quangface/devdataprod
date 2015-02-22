@@ -1,0 +1,56 @@
+NBA Salary Estimator
+========================================================
+author: Quang Nguyen
+date: 2/22/15
+font-import: http://fonts.googleapis.com/css?family=Roboto
+font-family: 'Roboto'
+
+NBA Salary Estimator Intro
+========================================================
+
+This presentation covers creating an NBA Salary Estimator Tool. This tool has taken in current NBA salary and statistics data and created a model to project NBA Salaries. This quite interesting for several reasons
+
+- It helps determine estimated salary given a set of metrics
+- It allows you to have an idea of which players are over/undervalued
+- It lets you enter in your own stats and see how much money you would make in the NBA!
+
+Getting Data
+========================================================
+
+I got all the NBA data from basketball-reference.com, from here I exported a csv to analyze
+<small style="font-size:.5em">
+```{r}
+nba.df <- read.csv("nba_stats.csv", header = TRUE)
+head(nba.df)
+```
+</small>
+Running a Model
+========================================================
+
+After trying a number of models, I settled on one that I thought was taking in the most interesting and relevant variables, this is seen below.
+<small style="font-size:.8em">
+```{r, echo=FALSE}
+nba1.lm <- lm(Salary_M ~ Inches + Age + MPG + PPG + FGAPG + RPG + APG, data=nba.df)
+nba1.lm
+
+```
+</small>
+Estimator App
+========================================================
+The app I developed is based on this work and provides all inputs for height, age, projected minutes/game, points/game, shots/game, assists/game, and rebounds/game to determine an estimated salary. This app includes links to player data that is used, salary distribution charts, and a model of the average NBA player.
+
+![alt text](screenshot.png)
+
+Check it out here! 
+
+But Wait, There's More!
+========================================================
+You can play with it endlessly. 
+
+Ever wonder what you would get paid if you were a 9 foot tall NBA Player who averaged 75 points/game? What if you were really bad at scoring but you assisted 15 times a game? Do you know which player is still getting paid even though he's not played a single minute this season?
+
+Now you can find out! 
+
+
+
+
